@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>Hello</h1>
+    <img src="{% url 'video_feed' %}"> -->
+    <table>
+        <tbody>
+            <tr>
+                <th>N</th>
+                <th>Moshina Raqami</th>
+                <th>Moshina Statusi</th>
+                <th>Moshina Kelgan Sanasi</th>
+            </tr>
+        </tbody>
+        <thead>
+            {% for i in lists %}
+            <tr>
+                <th>{{i.forloop.counter}}</th>
+                <th>{{i.car_number}}</th>
+                <th>{{i.status}}</th>
+                <th>{{i.started_at}}</th>    
+            </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</body>
+
+<script>
+    setTimeout(() => {
+    document.location.reload();
+    }, 5000);
+</script>
+</html>
