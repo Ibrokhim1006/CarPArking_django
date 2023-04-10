@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} <title>Parking Page</title> {% endblock title %}
+
+
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-light ">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="row d-flex justify-content-between w-100">
+        <div class="col">
+          <h2 class="text">Avtoturargoh: {{ parking.category.number }}-{{
+            parking.parking_status }}</h2>
+        </div>
+        <div class="col">
+          <a href="{% url 'home' %}" class="btn btn-primary">Orqaga</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="section">
+  <table class="table table-hover ">
+    <thead>
+      <tr>
+        <th>N</th>
+        <!-- <th>Rasm</th> -->
+        <th>Raqami</th>
+        <th>Narxi</th>
+        <th>Kirgani</th>
+        <th>Soati</th>
+        <th>Statusi</th>
+        <th>Check</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in cars %}
+      <tr>
+        <th>{{ forloop.counter }}</th>
+        <!-- <th><img src="{{ i.img.url }}" width="100px" height="25px" alt=""></th> -->
+        <th id="carnum{{i.slug}}">{{ i.car_number }}</th>
+        <th>{{ i.price }}</th>
+        <th>{{ i.started_at }}</th>
+        <th>{{ i.hour }} soat: {{i.prices}} so'm</th>
+        {% if i.status %}
+        <th><span style="color: green;">Ichkarida</span></th>
+        {% else %}
+        <th><span style="color: red;">Chiqib ketgan</span></th>
+        {% endif %}
+        <th>
+          <button class="btn btn-primary"
+            onclick="printFun('carnum{{i.slug}}', `{{i.prices}}`,
+            `{{i.started_at}}`)">Chek chiqarish</button>
+        </th>
+      </tr>
+      <!-- <div id="carnum{{i.slug}}" style="width: 200px;
+        display: none;
+        background-color: red; height: 500px;">
+        <h3>{{ i.car_number }}</h3>
+        <h3>{{ i.hour }} soat: {{i.prices}} so'm</h3>
+        <img src="{% static 'img/11.jpg' %}" alt=""
+          style="height: 200px;">
+      </div> -->
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+</div>
+<script>
+    // setTimeout(() => {
+    // document.location.reload();
+    // }, 3000);
+    // function printFun(carnum,){
+    //   var myWindows = window.open()
+    //   let a = carnum
+    //   myWindows.document.write(a)
+    //   myWindows.print()
+    // }
+
+    function printFun(divId, prices, started_at) {
+      console.log(divId);
+      console.log(prices);
+      console.log(started_at);
+       var printContents = document.getElementById(divId).innerHTML;
+       var originalContents = document.body.innerHTML;
+       document.body.html = `
+       <div>
+       <h3>${prices}</h3>
+       <h3>${started_at}</h3>
+       <img src="https://www.qrcode-monkey.com/img/default-preview-qr.svg" alt=""
+          style="height: 200px;">
+       </div>
+       
+       `
+       //  style="width: 200px; background-color: red; height: 500px;"
+       
+      //  printContents;
+      //  document.body.style = "background-color: red; height: 100px;"
+
+       window.print();
+       document.body.innerHTML = originalContents;
+   }
+</script>
+{% endblock content %}

@@ -7,33 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <h1>Hello</h1>
-    <img src="{% url 'video_feed' %}"> -->
-    <table>
-        <tbody>
-            <tr>
-                <th>N</th>
-                <th>Moshina Raqami</th>
-                <th>Moshina Statusi</th>
-                <th>Moshina Kelgan Sanasi</th>
-            </tr>
-        </tbody>
-        <thead>
-            {% for i in lists %}
-            <tr>
-                <th>{{i.forloop.counter}}</th>
-                <th>{{i.car_number}}</th>
-                <th>{{i.status}}</th>
-                <th>{{i.started_at}}</th>    
-            </tr>
-            {% endfor %}
-        </thead>
-    </table>
+
 </body>
 
 <script>
     setTimeout(() => {
     document.location.reload();
-    }, 5000);
+    }, 3000);
 </script>
 </html>

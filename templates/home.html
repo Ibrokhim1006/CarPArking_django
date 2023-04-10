@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} <title>Hoem Page</title> {% endblock title %}
+
+
+{% block content %}   
+<div class="row">
+  <div class="col">
+    <h1>Avtoturargoh</h1>
+    {{request.get_us}}
+  </div>
+  <div class="col">
+    <a href="{% url 'logout_user' %}" class="btn btn-danger">Chiqish</a>
+  </div>
+</div>  
+{% for i in parking %}   
+<div class="card mb-3">
+    <h5 class="card-header">Masul shaxs : {{i.security_name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Avtoturargoh raqami : {{i.category.number}} -- {{i.parking_status}}</h5>
+      <a href="{% url 'go_parking' i.slug %}" class="btn btn-primary">Avtoturargohga Kirish</a>
+    </div>
+  </div>
+{% endfor %}
+{% endblock content %}
